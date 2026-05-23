@@ -60,61 +60,6 @@ Struktur project frontend dibuat sederhana dan langsung dapat dijalankan melalui
 ```text
 📦fe-e-pengadaan-langsung
  ┣ 📂.git
- ┃ ┣ 📂gk
- ┃ ┃ ┗ 📜config
- ┃ ┣ 📂hooks
- ┃ ┃ ┣ 📜applypatch-msg.sample
- ┃ ┃ ┣ 📜commit-msg.sample
- ┃ ┃ ┣ 📜fsmonitor-watchman.sample
- ┃ ┃ ┣ 📜post-update.sample
- ┃ ┃ ┣ 📜pre-applypatch.sample
- ┃ ┃ ┣ 📜pre-commit.sample
- ┃ ┃ ┣ 📜pre-merge-commit.sample
- ┃ ┃ ┣ 📜pre-push.sample
- ┃ ┃ ┣ 📜pre-rebase.sample
- ┃ ┃ ┣ 📜pre-receive.sample
- ┃ ┃ ┣ 📜prepare-commit-msg.sample
- ┃ ┃ ┣ 📜push-to-checkout.sample
- ┃ ┃ ┣ 📜sendemail-validate.sample
- ┃ ┃ ┗ 📜update.sample
- ┃ ┣ 📂info
- ┃ ┃ ┗ 📜exclude
- ┃ ┣ 📂logs
- ┃ ┃ ┣ 📂refs
- ┃ ┃ ┃ ┣ 📂heads
- ┃ ┃ ┃ ┃ ┗ 📜main
- ┃ ┃ ┃ ┗ 📂remotes
- ┃ ┃ ┃ ┃ ┗ 📂origin
- ┃ ┃ ┃ ┃ ┃ ┣ 📜HEAD
- ┃ ┃ ┃ ┃ ┃ ┗ 📜main
- ┃ ┃ ┗ 📜HEAD
- ┃ ┣ 📂objects
- ┃ ┃ ┣ 📂0c
- ┃ ┃ ┃ ┗ 📜beeb9f8cceb0808130827d91765128c876b458
- ┃ ┃ ┣ 📂11
- ┃ ┃ ┃ ┗ 📜6cdd66a87ef7bbfebf748aa48724fc9a0fc798
- ┃ ┃ ┣ 📂82
- ┃ ┃ ┃ ┗ 📜464ec4a10fc79662ea811c7f9709db199b06ef
- ┃ ┃ ┣ 📂info
- ┃ ┃ ┗ 📂pack
- ┃ ┃ ┃ ┣ 📜pack-37e6a46a589368cce1652e7823599c7e26ae0b71.idx
- ┃ ┃ ┃ ┣ 📜pack-37e6a46a589368cce1652e7823599c7e26ae0b71.pack
- ┃ ┃ ┃ ┗ 📜pack-37e6a46a589368cce1652e7823599c7e26ae0b71.rev
- ┃ ┣ 📂refs
- ┃ ┃ ┣ 📂heads
- ┃ ┃ ┃ ┗ 📜main
- ┃ ┃ ┣ 📂remotes
- ┃ ┃ ┃ ┗ 📂origin
- ┃ ┃ ┃ ┃ ┣ 📜HEAD
- ┃ ┃ ┃ ┃ ┗ 📜main
- ┃ ┃ ┗ 📂tags
- ┃ ┣ 📜COMMIT_EDITMSG
- ┃ ┣ 📜config
- ┃ ┣ 📜description
- ┃ ┣ 📜FETCH_HEAD
- ┃ ┣ 📜HEAD
- ┃ ┣ 📜index
- ┃ ┗ 📜packed-refs
  ┣ 📂assets
  ┃ ┣ 📂css
  ┃ ┃ ┗ 📜style.css
@@ -406,7 +351,7 @@ Payload:
 
 ```json
 {
-  "email_penyedia": "vendor@test.com",
+  "email_penyedia": "makmur@test.com",
   "password_penyedia": "password123"
 }
 ```
