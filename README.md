@@ -59,7 +59,6 @@ Struktur project frontend dibuat sederhana dan langsung dapat dijalankan melalui
 
 ```text
 📦fe-e-pengadaan-langsung
- ┣ 📂.git
  ┣ 📂assets
  ┃ ┣ 📂css
  ┃ ┃ ┗ 📜style.css
