@@ -1,174 +1,242 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard - E-Pengadaan Langsung</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="dashboard-layout">
-        <!-- Sidebar -->
-        <aside class="sidebar glass-panel" style="border-radius: 0;">
-            <div class="brand">
-                <i class="fa-solid fa-layer-group"></i>
-                <span>E-Pengadaan</span>
+      <!-- Sidebar -->
+      <aside class="sidebar glass-panel" style="border-radius: 0">
+        <div class="brand">
+          <i class="fa-solid fa-layer-group"></i>
+          <span>E-Pengadaan</span>
+        </div>
+
+        <ul class="nav-links">
+          <li>
+            <a href="#" class="active">
+              <i class="fa-solid fa-chart-pie"></i> Dashboard
+            </a>
+          </li>
+        </ul>
+
+        <div style="margin-top: auto">
+          <button
+            id="btnLogout"
+            class="btn"
+            style="
+              width: 100%;
+              background: rgba(239, 68, 68, 0.1);
+              color: #ef4444;
+            "
+          >
+            <i class="fa-solid fa-right-from-bracket"></i> Keluar
+          </button>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <h2>Dashboard Overview</h2>
+            <p class="text-muted">
+              Pantau status pengadaan langsung Anda disini.
+            </p>
+          </div>
+          <div style="display: flex; align-items: center; gap: 1rem">
+            <div style="text-align: right">
+              <div id="userName" style="font-weight: 600">Loading...</div>
+              <div id="userRole" class="text-muted" style="font-size: 0.8rem">
+                -
+              </div>
             </div>
-
-            <ul class="nav-links">
-                <li>
-                    <a href="#" class="active">
-                        <i class="fa-solid fa-chart-pie"></i> Dashboard
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa-solid fa-file-contract"></i> Daftar Pengadaan
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa-solid fa-truck-fast"></i> Data Vendor
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa-solid fa-chart-line"></i> Laporan
-                    </a>
-                </li>
-            </ul>
-
-            <div style="margin-top: auto;">
-                <button id="btnLogout" class="btn" style="width: 100%; background: rgba(239, 68, 68, 0.1); color: #EF4444;">
-                    <i class="fa-solid fa-right-from-bracket"></i> Keluar
-                </button>
+            <div
+              style="
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: var(--primary-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: bold;
+              "
+            >
+              <i class="fa-solid fa-user"></i>
             </div>
-        </aside>
+          </div>
+        </header>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <header class="topbar">
-                <div>
-                    <h2>Dashboard Overview</h2>
-                    <p class="text-muted">Pantau status pengadaan langsung Anda disini.</p>
-                </div>
-                <div style="display: flex; align-items: center; gap: 1rem;">
-                    <div style="text-align: right;">
-                        <div id="userName" style="font-weight: 600;">Loading...</div>
-                        <div id="userRole" class="text-muted" style="font-size: 0.8rem;">-</div>
-                    </div>
-                    <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--primary-color); display: flex; align-items: center; justify-content: center; font-weight: bold;">
-                        <i class="fa-solid fa-user"></i>
-                    </div>
-                </div>
-            </header>
+        <div class="glass-panel" style="padding: 1.5rem">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 1rem;
+            "
+          >
+            <h3>Daftar Pengadaan Terbaru</h3>
+            <button
+              id="btnOpenModal"
+              class="btn btn-primary"
+              style="padding: 0.5rem 1rem; font-size: 0.9rem; display: none"
+            >
+              <i class="fa-solid fa-plus"></i> Buat Paket
+            </button>
+          </div>
 
-            <div class="glass-panel" style="padding: 1.5rem;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                    <h3>Daftar Pengadaan Terbaru</h3>
-                    <button id="btnOpenModal" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem; display: none;">
-                        <i class="fa-solid fa-plus"></i> Buat Paket
-                    </button>
-                </div>
-                
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Paket</th>
-                            <th>Pagu / Penawaran / Kontrak</th>
-                            <th>Vendor</th>
-                            <th>Progress</th>
-                            <th>Status</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody id="pengadaanTableBody">
-                        <tr>
-                            <td colspan="7" style="text-align: center;" class="text-muted">
-                                <i class="fa-solid fa-spinner fa-spin"></i> Memuat data...
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </main>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama Paket</th>
+                <th>Pagu / Penawaran / Kontrak</th>
+                <th>Vendor</th>
+                <th>Progress</th>
+                <th>Status</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="pengadaanTableBody">
+              <tr>
+                <td colspan="7" style="text-align: center" class="text-muted">
+                  <i class="fa-solid fa-spinner fa-spin"></i> Memuat data...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
     </div>
 
     <!-- Modal Create Pengadaan -->
     <div id="createModal" class="modal-overlay">
-        <div class="modal-content glass-panel">
-            <h2 style="margin-bottom: 1.5rem;">Buat Paket Pengadaan Baru</h2>
-            
-            <form id="createPengadaanForm">
-                <div class="input-group">
-                    <label>Nama Paket Pengadaan</label>
-                    <input type="text" id="inputNama" required placeholder="Contoh: Pengadaan Laptop Kantor">
-                </div>
-                <div class="input-group">
-                    <label>Pagu Anggaran (Rp)</label>
-                    <input type="number" id="inputPagu" required placeholder="Contoh: 50000000">
-                </div>
-                <div class="input-group">
-                    <label>Pilih Vendor / Penyedia</label>
-                    <select id="inputVendor" required>
-                        <option value="">Memuat vendor...</option>
-                    </select>
-                </div>
-                
-                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
-                    <button type="button" onclick="closeModal('createModal')" class="btn btn-secondary" style="flex: 1;">Batal</button>
-                    <button type="submit" class="btn btn-primary" style="flex: 1;">Simpan Paket</button>
-                </div>
-            </form>
-        </div>
+      <div class="modal-content glass-panel">
+        <h2 style="margin-bottom: 1.5rem">Buat Paket Pengadaan Baru</h2>
+
+        <form id="createPengadaanForm">
+          <div class="input-group">
+            <label>Nama Paket Pengadaan</label>
+            <input
+              type="text"
+              id="inputNama"
+              required
+              placeholder="Contoh: Pengadaan Laptop Kantor"
+            />
+          </div>
+          <div class="input-group">
+            <label>Pagu Anggaran (Rp)</label>
+            <input
+              type="number"
+              id="inputPagu"
+              required
+              placeholder="Contoh: 50000000"
+            />
+          </div>
+          <div class="input-group">
+            <label>Pilih Vendor / Penyedia</label>
+            <select id="inputVendor" required>
+              <option value="">Memuat vendor...</option>
+            </select>
+          </div>
+
+          <div style="display: flex; gap: 1rem; margin-top: 2rem">
+            <button
+              type="button"
+              onclick="closeModal('createModal')"
+              class="btn btn-secondary"
+              style="flex: 1"
+            >
+              Batal
+            </button>
+            <button type="submit" class="btn btn-primary" style="flex: 1">
+              Simpan Paket
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
 
     <!-- Modal Input Penawaran (Vendor) -->
     <div id="penawaranModal" class="modal-overlay">
-        <div class="modal-content glass-panel">
-            <h2 style="margin-bottom: 1.5rem;">Kirim Harga Penawaran</h2>
-            
-            <form id="penawaranForm">
-                <input type="hidden" id="penawaranPengadaanId">
-                <div class="input-group">
-                    <label>Nilai Penawaran (Rp)</label>
-                    <input type="number" id="inputPenawaran" required placeholder="Contoh: 48000000">
-                </div>
-                
-                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
-                    <button type="button" onclick="closeModal('penawaranModal')" class="btn btn-secondary" style="flex: 1;">Batal</button>
-                    <button type="submit" class="btn btn-primary" style="flex: 1;">Kirim Penawaran</button>
-                </div>
-            </form>
-        </div>
+      <div class="modal-content glass-panel">
+        <h2 style="margin-bottom: 1.5rem">Kirim Harga Penawaran</h2>
+
+        <form id="penawaranForm">
+          <input type="hidden" id="penawaranPengadaanId" />
+          <div class="input-group">
+            <label>Nilai Penawaran (Rp)</label>
+            <input
+              type="number"
+              id="inputPenawaran"
+              required
+              placeholder="Contoh: 48000000"
+            />
+          </div>
+
+          <div style="display: flex; gap: 1rem; margin-top: 2rem">
+            <button
+              type="button"
+              onclick="closeModal('penawaranModal')"
+              class="btn btn-secondary"
+              style="flex: 1"
+            >
+              Batal
+            </button>
+            <button type="submit" class="btn btn-primary" style="flex: 1">
+              Kirim Penawaran
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
 
     <!-- Modal Input Kontrak (Pejabat) -->
     <div id="kontrakModal" class="modal-overlay">
-        <div class="modal-content glass-panel">
-            <h2 style="margin-bottom: 1.5rem;">Tetapkan Nilai Kontrak</h2>
-            
-            <form id="kontrakForm">
-                <input type="hidden" id="kontrakPengadaanId">
-                <div class="input-group">
-                    <label>Nilai Kontrak Akhir (Rp)</label>
-                    <input type="number" id="inputKontrak" required placeholder="Contoh: 47500000">
-                </div>
-                
-                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
-                    <button type="button" onclick="closeModal('kontrakModal')" class="btn btn-secondary" style="flex: 1;">Batal</button>
-                    <button type="submit" class="btn btn-primary" style="flex: 1;">Setujui Kontrak</button>
-                </div>
-            </form>
-        </div>
+      <div class="modal-content glass-panel">
+        <h2 style="margin-bottom: 1.5rem">Tetapkan Nilai Kontrak</h2>
+
+        <form id="kontrakForm">
+          <input type="hidden" id="kontrakPengadaanId" />
+          <div class="input-group">
+            <label>Nilai Kontrak Akhir (Rp)</label>
+            <input
+              type="number"
+              id="inputKontrak"
+              required
+              placeholder="Contoh: 47500000"
+            />
+          </div>
+
+          <div style="display: flex; gap: 1rem; margin-top: 2rem">
+            <button
+              type="button"
+              onclick="closeModal('kontrakModal')"
+              class="btn btn-secondary"
+              style="flex: 1"
+            >
+              Batal
+            </button>
+            <button type="submit" class="btn btn-primary" style="flex: 1">
+              Setujui Kontrak
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
 
     <div id="toast" class="toast"></div>
 
     <script src="assets/js/dashboard.js"></script>
-</body>
+  </body>
 </html>
